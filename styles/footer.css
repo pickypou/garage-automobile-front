@@ -1,0 +1,15 @@
+footer {
+    width: 100%;
+    background-color: rgb(69, 67, 67);
+    padding-top: 30px;
+    padding-bottom: 30px;
+    position: absolute;
+    bottom: 0px;
+
+}
+li, a {
+    color: white;
+}
+ul {
+        list-style-type: none;
+}
