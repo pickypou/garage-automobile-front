@@ -2,140 +2,137 @@ import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
 import { Button, Card } from "react-bootstrap";
+import Footer from "../footer";
 
 export default function Annonce({ annonce, option, image }) {
   return (
-    <Fragment>
-      <div className="row d-flex justify-content-evenly">
-        <h1 className="mt-5 mb-5 text-center">{annonce.title}</h1>
+    <>
+      <main>
+        <div className="row d-flex justify-content-evenly">
+          <h1 className="mt-5 mb-5 text-center">{annonce.title}</h1>
 
-        <Card style={{ width: "40rem" }}>
-        <div style={{ position: "relative", width: "100%", height: "300px" }}>
-  {image && image.length > 0 && (
-    <Image
-      src={image.imgUne}
-      alt={annonce.title}
-      layout="fill"
-      objectFit="cover"
-    />
-  )}
-</div>
+          <Card
+            style={{ width: "40rem" }}
+            className="card border-secondary mb-3 card-container mb-5"
+          >
+            <Card.Body>
+              <Card.Text>{annonce.description}</Card.Text>
+              <div className="row ">
+                <div className="col-md-8">
+                  <h5>Caractéristique</h5>
+                  <div className="d-flex justify-content-center">
+                  <table className="table table-bordered">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <strong>Marque:</strong>
+                        </td>
+                        <td>{annonce.brand}</td>
 
-          <Card.Body>
-            <Card.Text>{annonce.description}</Card.Text>
-            <div className="row">
-              <div className="col-md-12">
-                <h5>Caractéristique</h5>
-                <table className="table table-bordered">
-                  <tbody>
-                    <tr>
-                      <td>
-                        <strong>Marque:</strong>
-                      </td>
-                      <td>{annonce.brand}</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <strong>Modèle:</strong>
-                      </td>
-                      <td>{annonce.model}</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <strong>Prix:</strong>
-                      </td>
-                      <td>{annonce.price} €</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <strong>Année:</strong>
-                      </td>
-                      <td>{annonce.year}</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <strong>Kilométrage:</strong>
-                      </td>
-                      <td>{annonce.mileage} KM</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <strong>Carburant:</strong>
-                      </td>
-                      <td>{annonce.fuel}</td>
-                    </tr>
-                  </tbody>
-                </table>
+                        <td>
+                          <strong>Modèle:</strong>
+                        </td>
+                        <td>{annonce.model}</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <strong>Prix:</strong>
+                        </td>
+
+                        <td>{annonce.price} €</td>
+                        <td>
+                          <strong>Année:</strong>
+                        </td>
+                        <td>{annonce.year}</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <strong>Kilométrage:</strong>
+                        </td>
+                        <td>{annonce.mileage} KM</td>
+
+                        <td>
+                          <strong>Carburant:</strong>
+                        </td>
+                        <td>{annonce.fuel}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
-            </div>
-
-            <div className="row mt-4">
-              <div className="col-md-12">
-                <h5>Options</h5>
-                <table className="table table-bordered">
-                  <tbody>
-                    <tr>
-                      <td>
-                        <strong>GPS:</strong>
-                      </td>
-                      <td>{option.gps}</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <strong>Limitateur de vitesse:</strong>
-                      </td>
-                      <td>{option.limitateur}</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <strong>Régulateur de vitesse:</strong>
-                      </td>
-                      <td>{option.regulateur}</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <strong>Climatisation:</strong>
-                      </td>
-                      <td>{option.clim}</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <strong>Aide au freinage d&aops;urgence:</strong>
-                      </td>
-                      <td>{option.sfu}</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <strong>Aide à la conduite:</strong>
-                      </td>
-                      <td>{option.sac}</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <strong>Bluetooth:</strong>
-                      </td>
-                      <td>{option.bluetooth}</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <strong>Caméra de recul:</strong>
-                      </td>
-                      <td>{option.camera}</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <strong>Aide au stationnement:</strong>
-                      </td>
-                      <td>{option.sas}</td>
-                    </tr>
-                  </tbody>
-                </table>
               </div>
-            </div>
-          </Card.Body>
-        </Card>
-      </div>
-    </Fragment>
+
+              <div className="row mt-4 ">
+                <div className="col-md-5">
+                  <h5>Options</h5>
+                  <table className="table table-bordered">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <strong>GPS:</strong>
+                        </td>
+                        <td>{option.gps}</td>
+                        <td>
+                          <strong>Limitateur de vitesse:</strong>
+                        </td>
+                        <td>{option.limitateur}</td>
+
+                         <td>
+                          <strong>Régulateur de vitesse:</strong>
+                        </td>
+                        <td>{option.regulateur}</td>
+                      </tr>
+
+                      <tr>
+                       
+                        <td>
+                          <strong>Climatisation:</strong>
+                        </td>
+                        <td>{option.clim}</td>
+
+                        <td>
+                          <strong>Aide au freinage d&apos;urgence:</strong>
+                        </td>
+                        <td>{option.sfu}</td>
+                        <td>
+                          <strong>Aide à la conduite:</strong>
+                        </td>
+                        <td>{option.sac}</td>
+                      </tr>
+
+                     
+                      <tr>
+                        <td>
+                          <strong>Bluetooth:</strong>
+                        </td>
+                        <td>{option.bluetooth}</td>
+
+                        <td>
+                          <strong>Caméra de recul:</strong>
+                        </td>
+                        <td>{option.camera}</td>
+
+                        <td>
+                          <strong>Aide au stationnement:</strong>
+                        </td>
+                        <td>{option.sas}</td>
+                      </tr>
+                     
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </Card.Body>
+            <Link href="/annonces">
+              <button className="btn btn-outline-secondary">
+                Liste des annonces
+              </button>
+            </Link>
+          </Card>
+        </div>
+      </main>
+      <Footer />
+    </>
   );
 }
 
@@ -178,7 +175,6 @@ export const getStaticProps = async ({ params }) => {
     fetch(imageUrl, {
       headers: {
         Accept: "application/json",
-        
       },
     }),
   ]);
