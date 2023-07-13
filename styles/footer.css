@@ -6,15 +6,16 @@
 
 footer {
     width: 100%;
-    background-color: rgb(108,117,125);
+    background-color: rgb(248, 251, 253);
     padding-top: 30px;
     padding-bottom: 30px;
     position: absolute;
     bottom: 0px;
+    border-top: #845ef7 1px solid;
 
 }
 li, a {
-    color: white;
+    color: #845ef7;
 }
 ul {
         list-style-type: none;

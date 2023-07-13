@@ -1,150 +1,84 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Fragment } from "react";
-import { Button, Card } from "react-bootstrap";
-import Footer from "../footer";
+import { Card, Col, Table } from "react-bootstrap";
 
-export default function Annonce({ annonce, option, image }) {
+export default function AnnonceDetail({ annonce, options, images }) {
   return (
     <>
-      <main>
-        <div className="row d-flex justify-content-evenly">
-          <h1 className="mt-5 mb-5 text-center">{annonce.title}</h1>
+      <h1 className="text-center mt-5 mb-5">{annonce.title}</h1>
 
-          <Card
-            style={{ width: "40rem" }}
-            className="card border-secondary mb-3 card-container mb-5"
-          >
-            <Card.Body>
-              <Card.Text>{annonce.description}</Card.Text>
-              <div className="row ">
-                <div className="col-md-8">
-                  <h5>Caractéristique</h5>
-                  <div className="d-flex justify-content-center">
-                  <table className="table table-bordered">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <strong>Marque:</strong>
-                        </td>
-                        <td>{annonce.brand}</td>
+      <Card className="mx-auto" style={{ width: "50rem" }}>
+        <Card.Img
+          variant="top"
+          src={images.imgUne ? `http://127.0.0.1:8000/${images.imgUne}` : ""}
+          alt={annonce.title}
+        />
 
-                        <td>
-                          <strong>Modèle:</strong>
-                        </td>
-                        <td>{annonce.model}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <strong>Prix:</strong>
-                        </td>
+        <Card.Body>
+          <Card.Title className="text-center title">{annonce.title}</Card.Title>
 
-                        <td>{annonce.price} €</td>
-                        <td>
-                          <strong>Année:</strong>
-                        </td>
-                        <td>{annonce.year}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <strong>Kilométrage:</strong>
-                        </td>
-                        <td>{annonce.mileage} KM</td>
+          <Table striped bordered hover>
+            <tbody>
+              <tr>
+                <td colSpan={4}>
+                  Description:
+                  <br />
+                  {annonce.description}
+                </td>
+              </tr>
+              <tr>
+                <td>Marque: {annonce.brand}</td>
+                <td>Modèle: {annonce.model}</td>
+                <td>Prix: {annonce.price} €</td>
+              </tr>
+              <tr>
+                <td>Année: {annonce.year}</td>
+                <td>Kilométrage: {annonce.mileage} KM</td>
+                <td>Carburant: {annonce.fuel}</td>
+              </tr>
+            </tbody>
+          </Table>
 
-                        <td>
-                          <strong>Carburant:</strong>
-                        </td>
-                        <td>{annonce.fuel}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              </div>
+          <h4 className="title">Les options</h4>
+          <Table striped bordered hover>
+            <tbody>
+              <tr>
+                <td>GPS: {options.gps}</td>
+              <td>Regulateur: {options.regulateur}</td>
+              <td>Limitateur: {options.limitateur}</td>
+              </tr>
+              <tr>
+                <td>Climatisation: {options.clim}</td>
+                <td>Freinage d&apos;urgence: {options.sfu}</td>
+                <td>Aide à la conduite: {options.sac}</td>
+              </tr>
+              <tr>
+                <td>Bluetooth: {options.bluetooth}</td>
+                <td>Camera de recule: {options.camera}</td>
+                <td>Aide au stationnement: {options.sas}</td>
+              </tr>
+              
+            </tbody>
+          </Table>
 
-              <div className="row mt-4 ">
-                <div className="col-md-5">
-                  <h5>Options</h5>
-                  <table className="table table-bordered">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <strong>GPS:</strong>
-                        </td>
-                        <td>{option.gps}</td>
-                        <td>
-                          <strong>Limitateur de vitesse:</strong>
-                        </td>
-                        <td>{option.limitateur}</td>
-
-                         <td>
-                          <strong>Régulateur de vitesse:</strong>
-                        </td>
-                        <td>{option.regulateur}</td>
-                      </tr>
-
-                      <tr>
-                       
-                        <td>
-                          <strong>Climatisation:</strong>
-                        </td>
-                        <td>{option.clim}</td>
-
-                        <td>
-                          <strong>Aide au freinage d&apos;urgence:</strong>
-                        </td>
-                        <td>{option.sfu}</td>
-                        <td>
-                          <strong>Aide à la conduite:</strong>
-                        </td>
-                        <td>{option.sac}</td>
-                      </tr>
-
-                     
-                      <tr>
-                        <td>
-                          <strong>Bluetooth:</strong>
-                        </td>
-                        <td>{option.bluetooth}</td>
-
-                        <td>
-                          <strong>Caméra de recul:</strong>
-                        </td>
-                        <td>{option.camera}</td>
-
-                        <td>
-                          <strong>Aide au stationnement:</strong>
-                        </td>
-                        <td>{option.sas}</td>
-                      </tr>
-                     
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </Card.Body>
-            <Link href="/annonces">
-              <button className="btn btn-outline-secondary">
-                Liste des annonces
-              </button>
-            </Link>
-          </Card>
-        </div>
-      </main>
-      <Footer />
+         
+        </Card.Body>
+        <Link href={"/annonces"} className="link text-center mt-3 mb-5 btn btn-outline-secondary">retour à la listes des annonces</Link>
+      </Card>
     </>
   );
 }
 
 export const getStaticPaths = async () => {
-  const url = "http://127.0.0.1:8000/api/annonces";
-  const response = await fetch(url, {
+  const annoncesUrl = "http://127.0.0.1:8000/api/annonces";
+
+  const annoncesResponse = await fetch(annoncesUrl, {
     headers: {
       Accept: "application/json",
     },
   });
 
-  const annonces = await response.json();
+  const annonces = await annoncesResponse.json();
 
   const paths = annonces.map((annonce) => ({
     params: {
@@ -157,37 +91,50 @@ export const getStaticPaths = async () => {
     fallback: "blocking",
   };
 };
+
 export const getStaticProps = async ({ params }) => {
+ 
   const annonceUrl = "http://127.0.0.1:8000/api/annonces/" + params.id;
-  const optionUrl = "http://127.0.0.1:8000/api/options/" + params.id;
-  const imageUrl = "http://127.0.0.1:8000/api/images/" + params.id;
-  const [annonceResponse, optionResponse, imageResponse] = await Promise.all([
-    fetch(annonceUrl, {
-      headers: {
-        Accept: "application/json",
-      },
-    }),
-    fetch(optionUrl, {
-      headers: {
-        Accept: "application/json",
-      },
-    }),
-    fetch(imageUrl, {
-      headers: {
-        Accept: "application/json",
-      },
-    }),
-  ]);
+  const optionsUrl = "http://127.0.0.1:8000/api/options/" + params.id;
+  const imagesUrl = "http://127.0.0.1:8000/api/images/" + params.id;
+ 
+  const annoncesResponse = await fetch(annonceUrl, {
+    headers: {
+      Accept: "application/json",
+    },
+  });
 
-  const annonce = await annonceResponse.json();
-  const option = await optionResponse.json();
-  const image = await imageResponse.json();
+  const optionsResponse = await fetch(optionsUrl, {
+    headers: {
+      Accept: "application/json",
+    },
+  });
 
+  const imagesResponse = await fetch(imagesUrl, {
+    headers: {
+      accept: "application/json",
+     
+    },
+  });
+ 
+  const annonce = await annoncesResponse.json();
+  
+  const options = await optionsResponse.json();
+  const imagesData = await imagesResponse.json();
+ 
+  const images = Object.values(imagesData).filter(
+    (value) => typeof value === "string",
+    
+  );
+
+  
   return {
     props: {
       annonce,
-      option,
-      image,
+      options,
+      images,
     },
+  
   };
+ 
 };

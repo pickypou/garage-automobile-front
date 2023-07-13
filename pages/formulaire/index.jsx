@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row } from 'react-bootstrap';
 import Footer from '../footer';
+import Link from 'next/link';
 
 export default function ContactForm  () {
   const [formData, setFormData] = useState({
@@ -39,11 +40,12 @@ export default function ContactForm  () {
 
   return (
     <>
+    <h1 className='text-center mt-5 mb-4'>Remplir le formulaire</h1>
       <Container>
         <Row className="justify-content-center">
           <Form onSubmit={handleSubmit} className="col-8">
             <Form.Group controlId="formName">
-              <Form.Label>Nom</Form.Label>
+              <Form.Label className='text-secondary'>Nom</Form.Label>
               <Form.Control
                 type="text"
                 name="name"
@@ -53,7 +55,7 @@ export default function ContactForm  () {
             </Form.Group>
 
             <Form.Group controlId="formEmail">
-              <Form.Label>Email</Form.Label>
+              <Form.Label className='text-secondary'>Email</Form.Label>
               <Form.Control
                 type="email"
                 name="email"
@@ -63,7 +65,7 @@ export default function ContactForm  () {
             </Form.Group>
 
             <Form.Group controlId="formMessage">
-              <Form.Label>Message</Form.Label>
+              <Form.Label className='text-secondary'>Message</Form.Label>
               <Form.Control
                 as="textarea"
                 name="message"
@@ -73,13 +75,22 @@ export default function ContactForm  () {
             </Form.Group>
 
             <input type="hidden" name="_next" value="https://your-website.com/thank-you" />
-
-            <Button variant="secondary mt-5" type="submit">
-              Envoyer
-            </Button>
+            <div className="d-flex justify-content-around">
+            <button  type="submit" className='btn btn-outline-secondary mt-5 clo-4 link'>
+              Envoyer votre message
+            </button>
+            <Link href="/">
+            <button className="btn btn-outline-secondary mt-5 clo-4 link">
+          Retour a l&apos;accueil
+          </button>
+          </Link>
+          </div>
           </Form>
         </Row>
       </Container>
+      <Link href="/formulaire">
+          
+        </Link>
 
       <Footer />
     </>

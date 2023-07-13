@@ -1,8 +1,10 @@
-{
-    "forms": {
-      "contactForm": {
-        "name": "Contact Form",
-        "actions": [{ "type": "email", "to": "{ludo.spysschaert@orange.fr}" }]
-      }
+{"forms": {
+    "signupForm": {
+      "name": "Sign-Up Form",
+      "actions": [{ 
+        "app": "mailchimp", 
+        "type": "addOrUpdateContact", 
+        "apiKey": "$FORMSPREE_MAILCHIMP_APIKEY" 
+      }]
     }
-  }
+  }}
