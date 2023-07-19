@@ -104,7 +104,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params }) => {
  
   const annonceUrl = "http://127.0.0.1:8000/api/annonces/" + params.id;
-  const optionsUrl = "http://127.0.0.1:8000/api/options/" + params.id;
+  const optionsUrl = "http://127.0.0.1:8000/api/options";
   
  
   const annoncesResponse = await fetch(annonceUrl, {
@@ -123,13 +123,13 @@ export const getStaticProps = async ({ params }) => {
   
   const options = await optionsResponse.json();
  
+  const optionsAnnonce = options.filter((option) => option.annonce_id == params.id);
 
   
   return {
     props: {
       annonce,
-      options,
-     
+      optionsAnnonce,
     },
   
   };
