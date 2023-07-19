@@ -48,8 +48,8 @@ export default function Annonces({ annonces }) {
     setFilteredAnnonces(filtered);
     setFilteredMileageRange(mileageRange);
   };
-  
-  
+
+
   return (
     <>
       <h1 className="text-center mt-5 mb-5">Liste des annonces</h1>
@@ -66,10 +66,7 @@ export default function Annonces({ annonces }) {
             {filteredAnnonces.map((annonce) => (
               <div className="col-md-4 mb-4" key={annonce.id}>
                 <Card style={{ width: "18rem" }}>
-             
-
-
-
+                  <Card.Img variant="top" src={`http://127.0.01:8000/public/upload/${annonce.imgUne}`} />
                   <Card.Body>
                     <Card.Title className="title">{annonce.title}</Card.Title>
                     <Card.Text>prix: {annonce.price} €</Card.Text>
@@ -101,7 +98,7 @@ export default function Annonces({ annonces }) {
   );
 }
 
-export const getStaticProps = async ({}) => {
+export const getStaticProps = async ({ }) => {
   const annoncesUrl = "http://127.0.0.1:8000/api/annonces/";
   const annoncesResponse = await fetch(annoncesUrl, {
     headers: {
@@ -110,7 +107,7 @@ export const getStaticProps = async ({}) => {
   });
 
   const annonces = await annoncesResponse.json();
- 
+
 
   return {
     props: {
