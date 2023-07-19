@@ -26,6 +26,11 @@ export default function Home({}) {
             Aller vers les annonces
           </button>
         </Link>
+        <Link href="/commentsForm">
+          <button className="btn btn-outline-secondary link">
+           donnée votre avie 
+          </button>
+        </Link>
         <Link href="/comments">
           <button className="btn btn-outline-secondary link">
            Voir les commentaires

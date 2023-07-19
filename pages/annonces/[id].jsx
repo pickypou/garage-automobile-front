@@ -1,19 +1,19 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Card, Col, Table } from "react-bootstrap";
 
-export default function AnnonceDetail({ annonce, options, images }) {
+import Link from "next/link";
+import { Card, Table } from "react-bootstrap";
+
+
+
+
+export default function AnnonceDetail({ annonce, options,  }) {
   return (
     <>
       <h1 className="text-center mt-5 mb-5">{annonce.title}</h1>
 
-      <Card className="mx-auto" style={{ width: "50rem" }}>
-        <Card.Img
-          variant="top"
-          src={images.imgUne ? `http://127.0.0.1:8000/${images.imgUne}` : ""}
-          alt={annonce.title}
-        />
 
+      <Card className="mx-auto" style={{ width: "50rem" }}>
+    
+      <Card.Img variant="top" src= "{annonce.imgUne}" />
         <Card.Body>
           <Card.Title className="text-center title">{annonce.title}</Card.Title>
 
@@ -96,7 +96,7 @@ export const getStaticProps = async ({ params }) => {
  
   const annonceUrl = "http://127.0.0.1:8000/api/annonces/" + params.id;
   const optionsUrl = "http://127.0.0.1:8000/api/options/" + params.id;
-  const imagesUrl = "http://127.0.0.1:8000/api/images/" + params.id;
+  
  
   const annoncesResponse = await fetch(annonceUrl, {
     headers: {
@@ -110,31 +110,21 @@ export const getStaticProps = async ({ params }) => {
     },
   });
 
-  const imagesResponse = await fetch(imagesUrl, {
-    headers: {
-      accept: "application/json",
-     
-    },
-  });
- 
   const annonce = await annoncesResponse.json();
   
   const options = await optionsResponse.json();
-  const imagesData = await imagesResponse.json();
  
-  const images = Object.values(imagesData).filter(
-    (value) => typeof value === "string",
-    
-  );
 
   
   return {
     props: {
       annonce,
       options,
-      images,
+     
     },
   
   };
  
 };
+
+
