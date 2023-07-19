@@ -39,17 +39,24 @@ export default function Comments({ comments }) {
 
 export const getStaticProps = async () => {
   const commentsUrl = "http://127.0.0.1:8000/api/comments";
-  const commentsResponse = await fetch(commentsUrl, {
-    headers: {
-      Accept: "application/json",
-    },
-  });
-
-  const comments = await commentsResponse.json();
-
-  return {
-    props: {
-      comments,
-    },
-  };
+  try {
+    const commentsResponse = await fetch(commentsUrl, {
+      headers: {
+        Accept: "application/json",
+      },
+    });
+    const commentsData = await commentsResponse.json();
+    return {
+      props: {
+        comments: commentsData,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching comments:", error);
+    return {
+      props: {
+        comments: [], // ou un message d'erreur pour afficher dans votre composant React.
+      },
+    };
+  }
 };

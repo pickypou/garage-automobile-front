@@ -48,33 +48,7 @@ export default function Annonces({ annonces }) {
     setFilteredAnnonces(filtered);
     setFilteredMileageRange(mileageRange);
   };
-  const [images, loading, error] = useQuery(
-    {
-      query: `/api/annonces/${annonce.id}`,
-      variables: {
-        annonceId: annonce.id,
-      },
-      // Cache les images pour 1 minute
-      cacheTime: 60000,
-    },
-    (data) => data.images,
-  );
   
-  // Affiche les images de l'annonce
-  if (images) {
-    images.forEach((image) => (
-      <Image
-        src={image.url}
-        alt={image.alt}
-        width={200}
-        height={200}
-      />
-    ))
-  } else if (loading) {
-    <div>Chargement...</div>
-  } else if (error) {
-    <div>Erreur lors de la récupération des images</div>
-  }
   
   return (
     <>
@@ -94,12 +68,7 @@ export default function Annonces({ annonces }) {
                 <Card style={{ width: "18rem" }}>
              
 
-<Image
-  src={images.url}
-  alt="Image 1"
-  width={200}
-  height={200}
-/>
+
 
                   <Card.Body>
                     <Card.Title className="title">{annonce.title}</Card.Title>
@@ -133,7 +102,7 @@ export default function Annonces({ annonces }) {
 }
 
 export const getStaticProps = async ({}) => {
-  const annoncesUrl = "http://127.0.0.1:8000/api/annonces";
+  const annoncesUrl = "http://127.0.0.1:8000/api/annonces/";
   const annoncesResponse = await fetch(annoncesUrl, {
     headers: {
       Accept: "application/json",

@@ -63,7 +63,10 @@ export default function AnnonceDetail({ annonce, options,  }) {
 
          
         </Card.Body>
-        <Link href={"/annonces"} className="link text-center mt-3 mb-5 btn btn-outline-secondary">retour à la listes des annonces</Link>
+        <div className="d-flex justitfy-content-center" >
+          <Link href={"/annonces"} className="link text-center mt-3 mb-5 btn btn-outline-secondary">retour à la listes des annonces</Link>
+        </div>
+        
       </Card>
     </>
   );
@@ -71,6 +74,7 @@ export default function AnnonceDetail({ annonce, options,  }) {
 
 export const getStaticPaths = async () => {
   const annoncesUrl = "http://127.0.0.1:8000/api/annonces";
+  const optionsUrl = "http://127.0.0.1:8000/api/options/" ;
 
   const annoncesResponse = await fetch(annoncesUrl, {
     headers: {
@@ -85,6 +89,11 @@ export const getStaticPaths = async () => {
       id: String(annonce.id),
     },
   }));
+  const optionsResponse = await fetch(optionsUrl, {
+    headers: {
+      Accept: "application/json",
+    },
+  });
 
   return {
     paths,
