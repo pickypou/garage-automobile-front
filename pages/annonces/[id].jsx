@@ -1,6 +1,6 @@
 
 import Link from "next/link";
-import { Card, Table } from "react-bootstrap";
+import { Card, Carousel, Table } from "react-bootstrap";
 
 
 
@@ -13,8 +13,20 @@ export default function AnnonceDetail({ annonce, options,  }) {
 
       <Card className="mx-auto" style={{ width: "50rem" }}>
     
-      <Card.Img variant="top" src={` http://127.0.0.1:8000/uploads/images/${annonce.imgUne}`} />
-
+      <Carousel>
+      <Carousel.Item>
+        <Card.Img variant="top" src={`http://127.0.0.1:8000/uploads/images/${annonce.imgUne}`} />
+      </Carousel.Item>
+      <Carousel.Item>
+        <Card.Img variant="top" src={`http://127.0.0.1:8000/uploads/images/${annonce.imgDeux}`} />
+      </Carousel.Item>
+      <Carousel.Item>
+        <Card.Img variant="top" src={`http://127.0.0.1:8000/uploads/images/${annonce.imgTrois}`} />
+      </Carousel.Item>
+      <Carousel.Item>
+        <Card.Img variant="top" src={`http://127.0.0.1:8000/uploads/images/${annonce.imgQuatre}`} />
+      </Carousel.Item>
+    </Carousel>
         <Card.Body>
           <Card.Title className="text-center title">{annonce.title}</Card.Title>
 
