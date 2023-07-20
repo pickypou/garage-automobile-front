@@ -65,7 +65,12 @@ Assurez-vous d'avoir Node.js et npm sur votre machine :
 
 Assurez-vous d'avoir installé la partie back-end du projet pour visualiser les annonces. Vous trouverez les renseignements pour cette partie plus bas.
 
-Pour accéder à l'application, ouvrez votre navigateur et rendez-vous à l'URL indiquée par npm lors de l'exécution de la commande "npm run dev".
+Pour accéder à l'application,exécuter de la commande "npm run dev". ouvrez votre navigateur et rendez-vous à l'URL (http://localhost:3000)
+
+## nous contacter
+
+touts les email envoyer arriverons sur l'adresse email du garrage: garage.parrot.ls@gmail.com 
+Password GarageParrot2023
 
 ## Partie back-end
 
