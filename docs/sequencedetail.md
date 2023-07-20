@@ -1,4 +1,4 @@
-#  sequences detail
+# sequences detail
 
 ## sequences detail d'une annonce
 

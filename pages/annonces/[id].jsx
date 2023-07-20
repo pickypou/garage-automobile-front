@@ -13,7 +13,8 @@ export default function AnnonceDetail({ annonce, options,  }) {
 
       <Card className="mx-auto" style={{ width: "50rem" }}>
     
-      <Card.Img variant="top" src= "{annonce.imgUne}" />
+      <Card.Img variant="top" src={` http://127.0.0.1:8000/uploads/images/${annonce.imgUne}`} />
+
         <Card.Body>
           <Card.Title className="text-center title">{annonce.title}</Card.Title>
 
@@ -74,7 +75,7 @@ export default function AnnonceDetail({ annonce, options,  }) {
 
 export const getStaticPaths = async () => {
   const annoncesUrl = "http://127.0.0.1:8000/api/annonces";
-  const optionsUrl = "http://127.0.0.1:8000/api/options/" ;
+  const optionsUrl = "http://127.0.0.1:8000/api/options" ;
 
   const annoncesResponse = await fetch(annoncesUrl, {
     headers: {
@@ -89,11 +90,6 @@ export const getStaticPaths = async () => {
       id: String(annonce.id),
     },
   }));
-  const optionsResponse = await fetch(optionsUrl, {
-    headers: {
-      Accept: "application/json",
-    },
-  });
 
   return {
     paths,
@@ -122,14 +118,29 @@ export const getStaticProps = async ({ params }) => {
   const annonce = await annoncesResponse.json();
   
   const options = await optionsResponse.json();
+
+  const list = options.filter((option) => option.annonce == `/api/annonces/${annonce.id}`) ?? [];
+
+  let optionsAnnonce = null;
+
+  let reponseErreur = {
+    options: options,
+    annonce,
+    id: `/api/annonces/${annonce.id}`,
+  }
+  if (list.length > 0) {
+    optionsAnnonce = list[0];
+  } else {
+    throw JSON.stringify(reponseErreur);
+  }
  
-  const optionsAnnonce = options.filter((option) => option.annonce_id == params.id);
+ 
 
   
   return {
     props: {
       annonce,
-      optionsAnnonce,
+      options: optionsAnnonce,
     },
   
   };

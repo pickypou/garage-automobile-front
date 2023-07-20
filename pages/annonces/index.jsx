@@ -66,7 +66,7 @@ export default function Annonces({ annonces }) {
             {filteredAnnonces.map((annonce) => (
               <div className="col-md-4 mb-4" key={annonce.id}>
                 <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src={`http://127.0.01:8000/public/upload/${annonce.imgUne}`} />
+                  <Card.Img variant="top" src={` http://127.0.0.1:8000/uploads/images/${annonce.imgUne}`} />
                   <Card.Body>
                     <Card.Title className="title">{annonce.title}</Card.Title>
                     <Card.Text>prix: {annonce.price} €</Card.Text>

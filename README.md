@@ -8,6 +8,7 @@ Le projet se concentre sur la partie front-end d'une application dédiée à la 
 Les utilisateurs ont la possibilité de contacter le service commercial via un formulaire de contact ou par téléphone pour prendre un rendez-vous.
 
 Un système de recherche a été mis en place pour faciliter l'utilisateur dans sa recherche d'un véhicule. Le système offre au client la possibilité de cibler sa recherche par :
+
 - Marque de véhicule
 - Kilométrage
 - Prix
@@ -19,6 +20,7 @@ Le projet Garage V.PARROT est une application qui comporte deux parties. La prem
 ## Pourquoi Next.js et React Bootstrap ?
 
 Next.js :
+
 - Rendu côté serveur (SSR) et rendu côté client (CSR) pour des temps de chargement rapides.
 - Optimisation pour les moteurs de recherche (SEO) pour une meilleure visibilité.
 - Performances améliorées grâce à l'optimisation automatique.
@@ -30,6 +32,7 @@ Next.js :
 - Communauté active pour un support et des ressources abondantes.
 
 React Bootstrap :
+
 - Intégration transparente avec les projets React existants.
 - Composants réactifs adaptatifs aux différentes tailles d'écran.
 - Personnalisation facile des styles pour correspondre à votre application.
@@ -45,6 +48,7 @@ React Bootstrap :
 ## En local
 
 1. Cloner le projet :
+
     git clone https://github.com/pickypou/garage-automobile-front.git
 
 2. Se rendre à la racine du projet :
@@ -66,5 +70,3 @@ Pour accéder à l'application, ouvrez votre navigateur et rendez-vous à l'URL 
 ## Partie back-end
 
 - [Lien du projet back-end](https://github.com/pickypou/garage-back.git)
-
-
