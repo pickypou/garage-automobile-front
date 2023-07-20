@@ -8,7 +8,7 @@ actor Utilisateur
 participant React
 participant API
 participant BDD
-Utilisatuer ->> React: entrée sur le site
+Utilisateur ->> React: entrée sur le site
 React ->> API: envoie des données
 API ->> BDD: envoi des données
 BDD ->> API: recupérer le commentaire
