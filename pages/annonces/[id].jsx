@@ -122,18 +122,20 @@ export const getStaticProps = async ({ params }) => {
   const annonce = await annoncesResponse.json();
   
   const options = await optionsResponse.json();
- 
-  const optionsAnnonce = options.filter((option) => option.annonce_id == params.id);
 
-  
-  return {
-    props: {
-      annonce,
-      optionsAnnonce,
-    },
-  
-  };
- 
-};
+  const list = options.filter((option) => option.annonce == `/api/annonces/${annonce.id}`) ?? [];
+
+  let optionsAnnonce = null;
+
+  let reponseErreur = {
+    options: options,
+    annonce,
+    id: `/api/annonces/${annonce.id}`,
+  }
+  if (list.length > 0) {
+    optionsAnnonce = list[0];
+  } else {
+    throw JSON.stringify(reponseErreur);
+  }
 
 
