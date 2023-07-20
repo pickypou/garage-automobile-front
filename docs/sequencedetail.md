@@ -13,5 +13,7 @@ sequenceDiagram
     API ->> BDD: récupérer l'annonce + les options
     BDD ->> API: Détail de l'annonce
     API ->> React: Détail de l'annonce
+    React ->> API: chargement des images
+    API -->> React:
     React ->> Utilisateur: Affichage du détail de l'annonce 
 ```
