@@ -9,11 +9,11 @@ sequenceDiagram
     participant API
     participant BDD
     Utilisateur ->> React: entrée sur le site
-    React ->> API: Récupèrer les details de l'annonce
+    React ->> Api: recupérer lesdonnées 
     API ->> BDD: récupérer l'annonce + les options
     BDD ->> API: Détail de l'annonce
     API ->> React: Détail de l'annonce
     React ->> API: chargement des images
-    API -->> React:
+    API -->> React: 
     React ->> Utilisateur: Affichage du détail de l'annonce 
 ```
