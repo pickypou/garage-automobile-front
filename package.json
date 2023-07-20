@@ -15,6 +15,7 @@
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
     "fs": "^0.0.1-security",
+    "mermaid": "^10.2.4",
     "mysql": "^2.18.1",
     "net": "^1.0.2",
     "next": "13.4.7",
