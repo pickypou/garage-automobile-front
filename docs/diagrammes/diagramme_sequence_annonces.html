@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagramme de sequence des annonces</title>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <h2>Diagramme des sequence des annonces</h2>
+    <div class="mermaid">
+        sequenceDiagram
+    actor Utilisateur
+    participant React
+    participant API
+    participant BDD
+    Utilisateur ->> React: Entrée sur le site
+    React ->> API: Récupère la liste des Annonces
+    API ->> BDD: Tout récupérer de la table annonces
+    BDD ->> API: Liste des annonces
+    API ->> React: Liste des annonces
+    React ->> API: Chargement des images
+    API -->> React: 
+    React ->> Utilisateur: Affichage de la liste des annonces
+    </div>
+    
+</body>
+</html>

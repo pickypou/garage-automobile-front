@@ -69,6 +69,8 @@ export default function Annonces({ annonces }) {
                   <Card.Img variant="top" src={` http://127.0.0.1:8000/uploads/images/${annonce.imgUne}`} />
                   <Card.Body>
                     <Card.Title className="title">{annonce.title}</Card.Title>
+                    <Card.Text>N° annonce : {annonce.id}</Card.Text>
+                    <Card.Text>Kilométrage : {annonce.mileage} KM</Card.Text>
                     <Card.Text>prix: {annonce.price} €</Card.Text>
                     <Link
                       href={"/annonces/" + annonce.id}

@@ -28,9 +28,8 @@ app.use(bodyParser.json());
 app.post('/api/form', (req, res) => {
   const { title, description } = req.body;
 
-  const query = `INSERT INTO comments (title, message) VALUES ('${title}', '${description}')`;
-
-  connection.query(query, (err, result) => {
+  const query = 'INSERT INTO comments (title, message) VALUES (?, ?)';
+  connection.query(query, [title, description], (err, result) => {
     if (err) {
       console.error('Failed to save comment', err);
       res.sendStatus(500);

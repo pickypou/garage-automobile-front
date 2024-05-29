@@ -8,10 +8,9 @@ export default function Comments({ comments }) {
     <>
       <main>
         <h1 className="text-center mt-5 mb-5">Liste des commentaires</h1>
-
-        <div className="row d-flex justify-content-evenly  ">
-          {comments.map((comment) => {
-            return (
+        {comments.length > 0 ? (
+          <div className="row d-flex justify-content-evenly">
+            {comments.map((comment) => (
               <div className="col-md-4 mb-4" key={comment.id}>
                 <Card style={{ width: "18rem" }}>
                   <CommentRating />
@@ -27,10 +26,18 @@ export default function Comments({ comments }) {
                   </Card.Body>
                 </Card>
               </div>
-            );
-          })}
-        </div>
-
+            ))}
+          </div>
+        ) : (
+          <div className="d-flex justify-content-center">
+            <Link
+              href={"/"}
+              className="link text-center mt-3 mb-5 btn btn-outline-secondary col-md-4"
+            >
+              Accueil
+            </Link>
+          </div>
+        )}
         <Footer />
       </main>
     </>

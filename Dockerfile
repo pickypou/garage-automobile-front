@@ -1,5 +1,5 @@
 # Utilisation d'une image officielle Node.js
-FROM node:14
+FROM node:22
 
 # Copie du code source Node.js dans l'image
 COPY . /app

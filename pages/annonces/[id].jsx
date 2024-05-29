@@ -28,7 +28,7 @@ export default function AnnonceDetail({ annonce, options,  }) {
       </Carousel.Item>
     </Carousel>
         <Card.Body>
-          <Card.Title className="text-center title">{annonce.title}</Card.Title>
+          <Card.Title className="text-center title">N° annonce : {annonce.id}</Card.Title>
 
           <Table striped bordered hover>
             <tbody>
