@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import Image from "next/image";
 import Footer from "./footer";
 import Link from "next/link";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 export default function Home({}) {
