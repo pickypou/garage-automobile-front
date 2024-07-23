@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Accordion, Button, Card, Form } from "react-bootstrap";
+import {  Button, Form } from "react-bootstrap";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
