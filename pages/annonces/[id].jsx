@@ -1,32 +1,26 @@
-
 import Link from "next/link";
 import { Card, Carousel, Table } from "react-bootstrap";
 
-
-
-
-export default function AnnonceDetail({ annonce, options,  }) {
+export default function AnnonceDetail({ annonce, options }) {
   return (
     <>
       <h1 className="text-center mt-5 mb-5">{annonce.title}</h1>
 
-
       <Card className="mx-auto" style={{ width: "50rem" }}>
-    
-      <Carousel>
-      <Carousel.Item>
-        <Card.Img variant="top" src={`http://127.0.0.1:8000/uploads/images/${annonce.imgUne}`} />
-      </Carousel.Item>
-      <Carousel.Item>
-        <Card.Img variant="top" src={`http://127.0.0.1:8000/uploads/images/${annonce.imgDeux}`} />
-      </Carousel.Item>
-      <Carousel.Item>
-        <Card.Img variant="top" src={`http://127.0.0.1:8000/uploads/images/${annonce.imgTrois}`} />
-      </Carousel.Item>
-      <Carousel.Item>
-        <Card.Img variant="top" src={`http://127.0.0.1:8000/uploads/images/${annonce.imgQuatre}`} />
-      </Carousel.Item>
-    </Carousel>
+        <Carousel>
+          <Carousel.Item>
+            <Card.Img variant="top" src={`http://127.0.0.1:8000/uploads/images/${annonce.imgUne}`} />
+          </Carousel.Item>
+          <Carousel.Item>
+            <Card.Img variant="top" src={`http://127.0.0.1:8000/uploads/images/${annonce.imgDeux}`} />
+          </Carousel.Item>
+          <Carousel.Item>
+            <Card.Img variant="top" src={`http://127.0.0.1:8000/uploads/images/${annonce.imgTrois}`} />
+          </Carousel.Item>
+          <Carousel.Item>
+            <Card.Img variant="top" src={`http://127.0.0.1:8000/uploads/images/${annonce.imgQuatre}`} />
+          </Carousel.Item>
+        </Carousel>
         <Card.Body>
           <Card.Title className="text-center title">N° annonce : {annonce.id}</Card.Title>
 
@@ -57,8 +51,8 @@ export default function AnnonceDetail({ annonce, options,  }) {
             <tbody>
               <tr>
                 <td>GPS: {options.gps}</td>
-              <td>Regulateur: {options.regulateur}</td>
-              <td>Limitateur: {options.limitateur}</td>
+                <td>Régulateur: {options.regulateur}</td>
+                <td>Limitateur: {options.limitateur}</td>
               </tr>
               <tr>
                 <td>Climatisation: {options.clim}</td>
@@ -67,19 +61,23 @@ export default function AnnonceDetail({ annonce, options,  }) {
               </tr>
               <tr>
                 <td>Bluetooth: {options.bluetooth}</td>
-                <td>Camera de recule: {options.camera}</td>
+                <td>Caméra de recul: {options.camera}</td>
                 <td>Aide au stationnement: {options.sas}</td>
               </tr>
-              
             </tbody>
           </Table>
-
-         
         </Card.Body>
-        <div className="d-flex justitfy-content-center" >
-          <Link href={"/annonces"} className="link text-center mt-3 mb-5 btn btn-outline-secondary">retour à la listes des annonces</Link>
+
+        <div className="d-flex justify-content-center mb-3">
+          <Link href={"/annonces"} className="link text-center mt-3 btn btn-outline-secondary">Retour à la liste des annonces</Link>
         </div>
-        
+
+        <div className="d-flex justify-content-center mb-5">
+  <Link href={`/formAnnonceContact?annonceId=${annonce.id}&brand=${annonce.brand}&model=${annonce.model}`}>
+    <div className="link text-center mt-3 mb-5 btn btn-outline-secondary">Contacter le Garage</div>
+  </Link>
+</div>
+
       </Card>
     </>
   );
@@ -87,7 +85,7 @@ export default function AnnonceDetail({ annonce, options,  }) {
 
 export const getStaticPaths = async () => {
   const annoncesUrl = "http://127.0.0.1:8000/api/annonces";
-  const optionsUrl = "http://127.0.0.1:8000/api/options" ;
+  const optionsUrl = "http://127.0.0.1:8000/api/options";
 
   const annoncesResponse = await fetch(annoncesUrl, {
     headers: {
@@ -98,9 +96,7 @@ export const getStaticPaths = async () => {
   const annonces = await annoncesResponse.json();
 
   const paths = annonces.map((annonce) => ({
-    params: {
-      id: String(annonce.id),
-    },
+    params: { id: String(annonce.id) },
   }));
 
   return {
@@ -110,53 +106,30 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }) => {
- 
   const annonceUrl = "http://127.0.0.1:8000/api/annonces/" + params.id;
   const optionsUrl = "http://127.0.0.1:8000/api/options";
-  
- 
+
   const annoncesResponse = await fetch(annonceUrl, {
-    headers: {
-      Accept: "application/json",
-    },
+    headers: { Accept: "application/json" },
   });
 
   const optionsResponse = await fetch(optionsUrl, {
-    headers: {
-      Accept: "application/json",
-    },
+    headers: { Accept: "application/json" },
   });
 
   const annonce = await annoncesResponse.json();
-  
   const options = await optionsResponse.json();
 
-  const list = options.filter((option) => option.annonce == `/api/annonces/${annonce.id}`) ?? [];
+  const list = options.filter((option) => option.annonce === `/api/annonces/${annonce.id}`) ?? [];
 
   let optionsAnnonce = null;
-
-  let reponseErreur = {
-    options: options,
-    annonce,
-    id: `/api/annonces/${annonce.id}`,
-  }
   if (list.length > 0) {
     optionsAnnonce = list[0];
   } else {
-    throw JSON.stringify(reponseErreur);
+    throw new Error(JSON.stringify({ options, annonce, id: `/api/annonces/${annonce.id}` }));
   }
- 
- 
 
-  
   return {
-    props: {
-      annonce,
-      options: optionsAnnonce,
-    },
-  
+    props: { annonce, options: optionsAnnonce },
   };
- 
 };
-
-
